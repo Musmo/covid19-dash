@@ -5,8 +5,9 @@ import './App.css';
 import Header from "./Header"
 import InfoBox from "./InfoBox"
 import Map from "./Map"
+import {useStateValue} from "./StateProvider";
 function App() {
-
+  const [{countryData}] = useStateValue();
   const [countries, setCountries] = useState([]);
   
     useEffect(() => {
@@ -35,9 +36,9 @@ function App() {
         <Header countries = {countries}/> 
         {/* InfoBoxes */}
         <div className="app__infoBoxs">
-          <InfoBox title = "Coronavirus cases" daily = {+1234} total = {1.3} />
-          <InfoBox title = "Recovered" daily = {+1234} total = {1.3} />
-          <InfoBox title = "Deaths" daily = {+1234} total = {1.3} />
+          <InfoBox title = "Coronavirus cases" daily = {countryData.todayCases} total = {countryData.cases} />
+          <InfoBox title = "Recovered" daily = {countryData.todayRecovered} total = {countryData.recovered} />
+          <InfoBox title = "Deaths" daily = {countryData.todayDeaths} total = {countryData.deaths} />
         </div>
      
         {/* Map */}  
