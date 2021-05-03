@@ -6,14 +6,16 @@ import Header from "./Header"
 import InfoBox from "./InfoBox"
 import Map from "./Map"
 import {useStateValue} from "./StateProvider";
+import Table from "./Table"
+import Plot from "./Plot"
 function App() {
-  const [{countryData}] = useStateValue();
+  const [{countryData}, dispatch] = useStateValue();
   const [countries, setCountries] = useState([]);
-  
+  const [allData, setAllData] = useState([]);
     useEffect(() => {
         //This code inside will run once when the component loads
         // and when the countries variable changes
-        console.log("inside useEffect");
+        
         // async We make a request to a server and we need to wait for the response
         const getData = async () => { // we use a promise
             await fetch ("https://disease.sh/v3/covid-19/countries")
@@ -23,11 +25,16 @@ function App() {
                         name: country.country,
                         value: country.countryInfo.iso2 //UK, IT
                     })); 
-                    setCountries(countries); // I set the new countries value 
+                    setCountries(countries); // I set the new countries value
+                    setAllData(data); 
                 })
         }
         getData();
     }, [] );
+  
+
+  
+
 
   return (
     <div className="app">
@@ -46,9 +53,12 @@ function App() {
       </div>
       <Card className = "app__right">
         <CardContent>
-          {/*Table and Plots */}
-          <h3> Live Cases by Country</h3>
-          <h3> World wide new cases </h3>
+          <div className="app__info">
+            <h2> Situation by Country </h2>
+            <Table data = {allData}/>
+            <Plot/>
+          </div>
+          
         </CardContent>
         
       </Card>

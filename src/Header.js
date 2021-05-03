@@ -8,7 +8,17 @@ function Header(props) {
     const [{countryData},dispatch] = useStateValue();
     const [selectedCountry, setSelectedCountry] = useState("worldwide");
 
-    
+    useEffect(() => {   // first time load the worldwide data
+        console.log("worldwide data useEffect")
+        fetch("https://disease.sh/v3/covid-19/all")
+          .then(response => response.json())
+          .then(data => {
+            dispatch({
+              type: 'SET',
+              data: data
+            })         
+          })
+    }, []);
 
     /* Function onClick on the dropDown*/
     const selectCountry = async(event) => {
