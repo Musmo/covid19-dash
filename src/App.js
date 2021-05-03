@@ -8,10 +8,17 @@ import Map from "./Map"
 import {useStateValue} from "./StateProvider";
 import Table from "./Table"
 import Plot from "./Plot"
+import "leaflet/dist/leaflet.css";
+
 function App() {
+  
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
   const [{countryData}, dispatch] = useStateValue();
   const [countries, setCountries] = useState([]);
   const [allData, setAllData] = useState([]);
+
+  
     useEffect(() => {
         //This code inside will run once when the component loads
         // and when the countries variable changes
@@ -49,7 +56,7 @@ function App() {
         </div>
      
         {/* Map */}  
-        <Map/>
+        <Map center = {mapCenter} zoom = {mapZoom}/>
       </div>
       <Card className = "app__right">
         <CardContent>
