@@ -24,7 +24,7 @@ const casesTypeColors = {
     mulitiplier: 2000,
   },
 };
-
+/*
 export const sortData = (data) => {
   const sortedData = [...data];
 
@@ -35,10 +35,56 @@ export const sortData = (data) => {
 
 export const prettyPrintStat = (stat) =>
   stat ? `+${numeral(stat).format("0.0a")}` : "+0";
+*/
+
 
 //Draw circles on the map
-export const showDataOnMap = (data, casesType) =>
-  data.map((country) => (
+export const showCircle = (countries, casesType) => {
+  console.log("move")  
+  return(
+    countries.map(country => {
+      return(
+        <Circle
+          center={[country.countryInfo.lat, country.countryInfo.long]}
+          fillOpacity={0.4}
+          pathOptions={{
+            color: casesTypeColors[casesType].hex,
+            fillColor: casesTypeColors[casesType].hex,
+          }}
+          radius={
+            Math.sqrt(country[casesType] / 10) *
+            casesTypeColors[casesType].mulitiplier
+          }
+        >
+          <Popup>
+          <div className="info-container">
+          <div
+            className="info-flag"
+            style={{ backgroundImage: `url(${country.countryInfo.flag})` }}
+          />
+          <div className="info-name">{country.country}</div>
+          <div className="info-confirmed">
+            Cases: {numeral(country.cases).format("0,0")}
+          </div>
+          <div className="info-recovered">
+            Recovered: {numeral(country.recovered).format("0,0")}
+          </div>
+          <div className="info-deaths">
+            Deaths: {numeral(country.deaths).format("0,0")}
+          </div>
+        </div>
+        
+          </Popup>
+        </Circle>
+        
+        
+        )
+    }
+  )
+    )
+}
+
+    /*
     <Circle
       center={[country.countryInfo.lat, country.countryInfo.long]}
       fillOpacity={0.4}
@@ -52,6 +98,8 @@ export const showDataOnMap = (data, casesType) =>
       }
     >
       <Popup>
+        <h1>POPUP</h1>
+        
         <div className="info-container">
           <div
             className="info-flag"
@@ -68,6 +116,9 @@ export const showDataOnMap = (data, casesType) =>
             Deaths: {numeral(country.deaths).format("0,0")}
           </div>
         </div>
+        
       </Popup>
     </Circle>
-  ));
+  )); */
+
+  

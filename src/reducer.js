@@ -1,5 +1,7 @@
 export const initialState = {
     countryData: {}, // at the start the basket is an empty array
+
+
 }
 
 // Selector 
@@ -14,7 +16,8 @@ function reducer(state, action){
             return{ ...state,
                 countryData: action.data
                 
-            };         
+            };    
+        
         default:
             return state; // if don't know what to do return the state
     }

@@ -9,7 +9,7 @@ function InfoBox(props) {
 
 
     return (
-        <Card>
+        <Card className = 'infoBox'>
             <CardContent>
                 <Typography color = "SecondaryText">
                     {props.title}

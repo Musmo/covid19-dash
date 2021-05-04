@@ -12,8 +12,7 @@ import "leaflet/dist/leaflet.css";
 
 function App() {
   
-  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
-  const [mapZoom, setMapZoom] = useState(3);
+  
   const [{countryData}, dispatch] = useStateValue();
   const [countries, setCountries] = useState([]);
   const [allData, setAllData] = useState([]);
@@ -56,7 +55,7 @@ function App() {
         </div>
      
         {/* Map */}  
-        <Map center = {mapCenter} zoom = {mapZoom}/>
+        <Map countries = {allData} />
       </div>
       <Card className = "app__right">
         <CardContent>

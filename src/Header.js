@@ -34,12 +34,14 @@ function Header(props) {
                 dispatch({
                     type: 'SET',
                     data: data
-                  })          
+                  })   
+                 
+                  
             }
         )
         
     }
-    console.log("COUNTRY DATA >>>>>", countryData)
+    
     return (
         <div className = "header">
                 {/* "Title"*/}

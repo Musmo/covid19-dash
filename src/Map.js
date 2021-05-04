@@ -1,18 +1,31 @@
 
 import React from "react";
-import { MapContainer as LeafletMap, TileLayer } from "react-leaflet"
+import { MapContainer as LeafletMap, TileLayer, useMap} from "react-leaflet"
 import "./Map.css";
+import {useStateValue} from "./StateProvider";
+import {showCircle} from "./utils"
+ 
 
+function Map({countries}) {
+  const [{countryData}, dispacher] = useStateValue();
 
-function Map({  center, zoom }) {
+  function ChangeView({ center, zoom }) {
+    const map = useMap();
+    map.setView(center, zoom);
+    return null;
+  }
   return (
     <div className="map">
-      <LeafletMap center ={center} zoom={zoom}>
+      
+      <LeafletMap minZoom={2} maxBounds = {[[-90,-180],   [90,180]]}>
+      <ChangeView center={countryData.hasOwnProperty('countryInfo') ?  [countryData.countryInfo.lat, countryData.countryInfo.long] :
+      [0,0]} zoom={countryData.hasOwnProperty('countryInfo') ? 4:2}  />
         <TileLayer
+          noWrap={true}
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        {/*showDataOnMap(countries, casesType)*/}
+        {showCircle(countries, 'cases')}
       </LeafletMap>
     </div>
   );
