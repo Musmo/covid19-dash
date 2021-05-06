@@ -44,6 +44,18 @@ function App() {
 
   return (
     <div className="app">
+
+      <Card className = "app__right">
+        <CardContent>
+          <div className="app__info">
+            <h1 className = "app__title"> Situation by Country </h1>
+            <Table data = {allData}/>
+            <h1 className = "app__title"> World Cases </h1> 
+            <Plot/>
+          </div>
+          
+        </CardContent>
+      </Card>
       <div className= "app__left">
         {/*Header */}
         <Header countries = {countries}/> 
@@ -53,21 +65,11 @@ function App() {
           <InfoBox title = "Recovered" daily = {countryData.todayRecovered} total = {countryData.recovered} />
           <InfoBox title = "Deaths" daily = {countryData.todayDeaths} total = {countryData.deaths} />
         </div>
-     
-        {/* Map */}  
+        {/* Map */} 
+        
         <Map countries = {allData} />
       </div>
-      <Card className = "app__right">
-        <CardContent>
-          <div className="app__info">
-            <h2> Situation by Country </h2>
-            <Table data = {allData}/>
-            <Plot/>
-          </div>
-          
-        </CardContent>
-        
-      </Card>
+      
       
     </div>
   );

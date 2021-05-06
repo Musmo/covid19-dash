@@ -45,7 +45,7 @@ function Header(props) {
     return (
         <div className = "header">
                 {/* "Title"*/}
-                <h1>Covid 19 Tracker</h1>
+                <h1 className = "header__title" >COVID-19 Pandemic</h1>
                 {/*"search Bar" */}
                 <FormControl className="header__dropDown">
                     <Select variant = "outlined" onChange = {selectCountry} value= {selectedCountry}>

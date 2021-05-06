@@ -2,10 +2,9 @@
     margin-top: 20px;
     overflow: scroll;
     height: 500px;
-    color: #6a5d5d;
-
-
+    background-color:white;
 }
+/*
 .table tr{
     
     display: flex;
@@ -15,7 +14,14 @@
 .table td {
     padding: 0.5rem;
 }
-
+.table th {
+    padding: 0.5rem;
+}
 .table tr:nth-of-type(odd) {
     background-color: #f3f2f8;
 }
+*/
+.MuiTablePagination-caption { /* Class generated from your code */
+    display: none;
+  }
+
